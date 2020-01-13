@@ -1,8 +1,10 @@
-﻿namespace GitHubTimeMachine.Interfaces
+﻿using System.Data;
+
+namespace GitHubTimeMachine.Interfaces
 {
     internal interface IExcelReaderService
     {
-        object Parse(string filePath);
-        object Parse(string filePath, int sheetNumber);
+        DataTable OpenSheet(string filePath, int sheetNumber = 0);
+        int[][] ParseSheet(DataTable dataTable);
     }
 }
