@@ -1,7 +1,5 @@
 {
-  "Year": "",
-  "Paths": {
-    "RepositoryPath": "",
-    "ExcelPath": ""
-  }
+  "Year": "2000",
+  "RepositoryPath": "..",
+  "ExcelPath": ".."
 }
