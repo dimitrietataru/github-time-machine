@@ -5,8 +5,9 @@ namespace GitHubTimeMachine.Interfaces
 {
     internal interface IGitCommandBuilder
     {
+        string ChangeDir(string path);
         string Add();
-        IEnumerable<string> Commits(IEnumerable<DateTime> dates);
+        IEnumerable<KeyValuePair<string, string>> Commits(IEnumerable<DateTime> dates);
         string Push(string branchName = "master");
     }
 }

@@ -7,19 +7,26 @@ namespace GitHubTimeMachine.Services
 {
     internal sealed class GitCommandBuilder : IGitCommandBuilder
     {
-        public string Add()
+        public string ChangeDir(string path)
         {
-            return "git add .";
+            return $"cd \"{ path }\"";
         }
 
-        public IEnumerable<string> Commits(IEnumerable<DateTime> dates)
+        public string Add()
+        {
+            return "git add *";
+        }
+
+        public IEnumerable<KeyValuePair<string, string>> Commits(IEnumerable<DateTime> dates)
         {
             return dates
                 .Select(date =>
                     {
                         string formattedDate = date.ToString("ddd, MMM dd HH:mm yyyy +0200");
 
-                        return $"GIT_COMMITTER_DATE=\"{ formattedDate }\" git commit -m \"{ formattedDate }\" --date=\"{ formattedDate }\"";
+                        return new KeyValuePair<string, string>(
+                            key: formattedDate,
+                            value: $"git commit -m \"{ formattedDate }\" --date=\"{ formattedDate }\"");
                     });
         }
 
