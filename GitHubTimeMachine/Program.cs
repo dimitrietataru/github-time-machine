@@ -13,7 +13,7 @@ namespace GitHubTimeMachine
         {
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 
-            commitArt.Execute();
+            await commitArt.ExecuteAsync();
         }
     }
 }

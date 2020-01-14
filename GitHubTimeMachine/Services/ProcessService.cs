@@ -1,4 +1,5 @@
 ﻿using GitHubTimeMachine.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Management.Automation;
 using System.Threading.Tasks;
@@ -8,7 +9,6 @@ namespace GitHubTimeMachine.Services
     internal sealed class ProcessService : IProcessService
     {
         private const string FILE_PATH_BASE = "{0}/{1}.txt";
-        private const string POWERSHELL_ENV_BASE = "$env:GIT_COMMITTER_DATE = '{0}'";
         private readonly IFileService fileService;
         private readonly IGitCommandBuilder gitCommand;
 
@@ -18,27 +18,31 @@ namespace GitHubTimeMachine.Services
             gitCommand = new GitCommandBuilder();
         }
 
-        public async Task ExecuteCommitsAsync(IEnumerable<KeyValuePair<string, string>> commits, int year, string repositoryPath)
+        public async Task ExecuteCommitsAsync(IEnumerable<DateTime> dates, int year, string repositoryPath)
         {
-            using var powerShell = PowerShell.Create();
-
             string filePath = string.Format(FILE_PATH_BASE, repositoryPath, year);
             fileService.Create($"{ repositoryPath }/{ year }.txt");
 
-            foreach (var commit in commits)
+            using var powerShell = PowerShell.Create();
+
+            foreach (var date in dates)
             {
-                await fileService.AppendAsync(filePath, commit.Value);
+                await fileService.AppendAsync(filePath, date.ToString());
 
-                string envCommitterDate = string.Format(POWERSHELL_ENV_BASE, commit.Key);
-                powerShell.AddScript(envCommitterDate);
-
+                powerShell.AddScript(gitCommand.CommitterDate(date));
                 powerShell.AddScript(gitCommand.ChangeDir(repositoryPath));
+                powerShell.AddScript(gitCommand.Checkout("master"));
                 powerShell.AddScript(gitCommand.Add());
-                powerShell.AddScript(commit.Value);
+                powerShell.AddScript(gitCommand.Commit(date));
 
                 _ = await powerShell.InvokeAsync();
                 powerShell.Commands.Clear();
             }
+
+            powerShell.AddScript(gitCommand.Push());
+
+            _ = await powerShell.InvokeAsync();
+            powerShell.Commands.Clear();
 
             powerShell.Dispose();
         }

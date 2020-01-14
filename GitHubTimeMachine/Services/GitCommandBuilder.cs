@@ -1,15 +1,25 @@
 ﻿using GitHubTimeMachine.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace GitHubTimeMachine.Services
 {
     internal sealed class GitCommandBuilder : IGitCommandBuilder
     {
+        private const string DATE_TIME_FORMAT = "ddd, MMM dd HH:mm yyyy +0200";
+
+        public string CommitterDate(DateTime date)
+        {
+            return $"$env:GIT_COMMITTER_DATE = '{ date.ToString(DATE_TIME_FORMAT) }'";
+        }
+
         public string ChangeDir(string path)
         {
             return $"cd \"{ path }\"";
+        }
+
+        public string Checkout(string branchName)
+        {
+            return $"git checkout -b { branchName }";
         }
 
         public string Add()
@@ -17,17 +27,11 @@ namespace GitHubTimeMachine.Services
             return "git add *";
         }
 
-        public IEnumerable<KeyValuePair<string, string>> Commits(IEnumerable<DateTime> dates)
+        public string Commit(DateTime date)
         {
-            return dates
-                .Select(date =>
-                    {
-                        string formattedDate = date.ToString("ddd, MMM dd HH:mm yyyy +0200");
+            string formattedDate = date.ToString(DATE_TIME_FORMAT);
 
-                        return new KeyValuePair<string, string>(
-                            key: formattedDate,
-                            value: $"git commit -m \"{ formattedDate }\" --date=\"{ formattedDate }\"");
-                    });
+            return $"git commit -m \"{ formattedDate }\" --date=\"{ formattedDate }\"";
         }
 
         public string Push(string branchName = "master")
