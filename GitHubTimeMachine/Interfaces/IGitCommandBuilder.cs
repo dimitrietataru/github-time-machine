@@ -1,13 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace GitHubTimeMachine.Interfaces
 {
     internal interface IGitCommandBuilder
     {
+        string CommitterDate(DateTime date);
         string ChangeDir(string path);
+        string Checkout(string branchName);
         string Add();
-        IEnumerable<KeyValuePair<string, string>> Commits(IEnumerable<DateTime> dates);
+        string Commit(DateTime date);
         string Push(string branchName = "master");
     }
 }

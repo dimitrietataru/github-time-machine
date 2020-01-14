@@ -35,7 +35,7 @@ namespace GitHubTimeMachine.Services
                             .Range(0, commitCount)
                             .Select(_ =>
                                 {
-                                    int hour = new Random().Next(0, 24);
+                                    int hour = new Random().Next(9, 17);
                                     int minute = new Random().Next(0, 60);
                                     int second = new Random().Next(0, 60);
 
