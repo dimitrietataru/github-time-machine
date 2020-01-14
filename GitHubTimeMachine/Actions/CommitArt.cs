@@ -1,22 +1,33 @@
 ﻿using GitHubTimeMachine.Interfaces;
 using GitHubTimeMachine.Services;
+using System.Threading.Tasks;
 
 namespace GitHubTimeMachine.Actions
 {
     internal sealed class CommitArt
     {
-        private const string PATH = @"C:\Users\Myt\Desktop\Template.xlsx";
+        private readonly IConfigReaderService configReader;
         private readonly IExcelReaderService excelReader;
+        private readonly IDateTimeEnumeratorService dateTimeEnumerator;
+        private readonly IProcessService processService;
 
         public CommitArt()
         {
-            excelReader = new ExcelReader();
+            configReader = new ConfigReaderService();
+            excelReader = new ExcelReaderService();
+            dateTimeEnumerator = new DateTimeEnumeratorService();
+            processService = new ProcessService();
         }
 
-        public void Execute()
+        public async Task ExecuteAsync()
         {
-            var sheet = excelReader.OpenSheet(PATH, sheetNumber: 0);
+            var config = await configReader.GetConfigAsync();
+
+            var sheet = excelReader.OpenSheet(config.ExcelPath, sheetNumber: 0);
             var matrix = excelReader.ParseSheet(sheet);
+            var days = dateTimeEnumerator.GetDays(config.Year, matrix);
+
+            await processService.ExecuteCommitsAsync(days, config.Year, config.RepositoryPath);
         }
     }
 }
