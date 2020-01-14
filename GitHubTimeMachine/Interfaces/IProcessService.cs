@@ -1,8 +1,10 @@
-﻿namespace GitHubTimeMachine.Interfaces
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+
+namespace GitHubTimeMachine.Interfaces
 {
     internal interface IProcessService
     {
-        object GetInstance();
-        void ResetInstance();
+        Task ExecuteCommitsAsync(IEnumerable<KeyValuePair<string, string>> commits, int year, string repositoryPath);
     }
 }
