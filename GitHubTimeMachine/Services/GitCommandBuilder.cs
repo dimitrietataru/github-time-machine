@@ -36,7 +36,7 @@ namespace GitHubTimeMachine.Services
 
         public string Push(string branchName = "master")
         {
-            return $"git push origin { branchName }";
+            return $"git push --force origin { branchName }";
         }
     }
 }

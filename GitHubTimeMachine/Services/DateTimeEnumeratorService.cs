@@ -16,6 +16,11 @@ namespace GitHubTimeMachine.Services
             {
                 for (int row = 0; row < matrix.Length; ++row)
                 {
+                    if (date.Year > year)
+                    {
+                        break;
+                    }
+
                     int commitCount = matrix[row][column];
 
                     if (commitCount.Equals(-1))

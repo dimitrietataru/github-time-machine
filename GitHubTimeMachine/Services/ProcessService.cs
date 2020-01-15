@@ -1,6 +1,7 @@
 ﻿using GitHubTimeMachine.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Management.Automation;
 using System.Threading.Tasks;
 
@@ -24,6 +25,7 @@ namespace GitHubTimeMachine.Services
             fileService.Create($"{ repositoryPath }/{ year }.txt");
 
             using var powerShell = PowerShell.Create();
+            int progressCount = 1;
 
             foreach (var date in dates)
             {
@@ -37,6 +39,8 @@ namespace GitHubTimeMachine.Services
 
                 _ = await powerShell.InvokeAsync();
                 powerShell.Commands.Clear();
+
+                Console.WriteLine($"Processed { progressCount++ } / { dates.Count() } commits");
             }
 
             powerShell.AddScript(gitCommand.Push());

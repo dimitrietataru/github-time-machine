@@ -1,5 +1,4 @@
 ﻿using GitHubTimeMachine.Actions;
-using System;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,7 +8,7 @@ namespace GitHubTimeMachine
     {
         private static readonly CommitArt commitArt = new CommitArt();
 
-        static async Task Main(string[] args)
+        static async Task Main(string[] _)
         {
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 
