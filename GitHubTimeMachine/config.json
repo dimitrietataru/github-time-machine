@@ -3,7 +3,8 @@
     "Enabled": true,
     "Year": 2017,
     "RepositoryPath": "C:\\Users\\Myt\\Desktop\\Repositories\\GithubTimeMachine-CommitArt",
-    "ExcelPath": "C:\\Users\\Myt\\Desktop\\Repositories\\GithubTimeMachine\\Template.xlsx"
+    "ExcelPath": "C:\\Users\\Myt\\Desktop\\Repositories\\GithubTimeMachine\\Template.xlsx",
+    "SheetNumber": 0
   },
   "HistoryRandomizer": {
     "Enabled": false,

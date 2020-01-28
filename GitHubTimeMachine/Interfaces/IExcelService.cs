@@ -2,9 +2,9 @@
 
 namespace GitHubTimeMachine.Interfaces
 {
-    internal interface IExcelReaderService
+    internal interface IExcelService
     {
-        DataTable OpenSheet(string filePath, int sheetNumber = 0);
+        DataTable ReadSheet(string excelFilePath, int sheetNumber = 0);
         int[][] ParseSheet(DataTable dataTable);
     }
 }

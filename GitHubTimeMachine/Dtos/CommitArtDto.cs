@@ -6,6 +6,7 @@
         public int Year { get; set; }
         public string RepositoryPath { get; set; }
         public string ExcelPath { get; set; }
+        public int SheetNumber { get; set; } = 0;
 
         public bool ShouldRun()
         {

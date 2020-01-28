@@ -7,14 +7,14 @@ namespace GitHubTimeMachine.Actions
     internal sealed class CommitArt
     {
         private readonly IConfigurationService configurationService;
-        private readonly IExcelReaderService excelReader;
+        private readonly IExcelService excelService;
         private readonly IDateTimeEnumeratorService dateTimeEnumerator;
         private readonly IProcessService processService;
 
         public CommitArt()
         {
             configurationService = new ConfigurationService();
-            excelReader = new ExcelReaderService();
+            excelService = new ExcelService();
             dateTimeEnumerator = new DateTimeEnumeratorService();
             processService = new ProcessService();
         }
@@ -27,8 +27,8 @@ namespace GitHubTimeMachine.Actions
                 return;
             }
 
-            var sheet = excelReader.OpenSheet(config.CommitArt.ExcelPath, sheetNumber: 0);
-            var matrix = excelReader.ParseSheet(sheet);
+            var sheet = excelService.ReadSheet(config.CommitArt.ExcelPath, config.CommitArt.SheetNumber);
+            var matrix = excelService.ParseSheet(sheet);
             var days = dateTimeEnumerator.GetDays(config.CommitArt.Year, matrix);
 
             await processService.ExecuteCommitsAsync(days, config.CommitArt.Year, config.CommitArt.RepositoryPath);
