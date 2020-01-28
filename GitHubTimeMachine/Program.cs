@@ -11,10 +11,10 @@ namespace GitHubTimeMachine
 
         static async Task Main(string[] _)
         {
-            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+            Encoding.RegisterProvider(provider: CodePagesEncodingProvider.Instance);
 
-            await commitArt.ExecuteAsync();
-            await historyRandomizer.ExecuteAsync();
+            await commitArt.RunAsync().ConfigureAwait(continueOnCapturedContext: false);
+            await historyRandomizer.RunAsync().ConfigureAwait(continueOnCapturedContext: false);
         }
     }
 }

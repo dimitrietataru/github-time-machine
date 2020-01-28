@@ -6,16 +6,16 @@ namespace GitHubTimeMachine.Actions
 {
     internal sealed class HistoryRandomizer
     {
-        private readonly IConfigReaderService configReader;
+        private readonly IConfigurationService configurationService;
 
         public HistoryRandomizer()
         {
-            configReader = new ConfigReaderService();
+            configurationService = new ConfigurationService();
         }
 
-        public async Task ExecuteAsync()
+        public async Task RunAsync()
         {
-            var config = await configReader.GetConfigAsync();
+            var config = await configurationService.ReadConfigAsync();
             if (!config.HistoryRandomizer.ShouldRun())
             {
                 return;

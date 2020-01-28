@@ -3,8 +3,8 @@ using System.Threading.Tasks;
 
 namespace GitHubTimeMachine.Interfaces
 {
-    internal interface IConfigReaderService
+    internal interface IConfigurationService
     {
-        Task<ConfigDto> GetConfigAsync();
+        Task<ConfigDto> ReadConfigAsync();
     }
 }

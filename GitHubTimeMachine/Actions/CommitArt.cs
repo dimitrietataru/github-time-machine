@@ -6,22 +6,22 @@ namespace GitHubTimeMachine.Actions
 {
     internal sealed class CommitArt
     {
-        private readonly IConfigReaderService configReader;
+        private readonly IConfigurationService configurationService;
         private readonly IExcelReaderService excelReader;
         private readonly IDateTimeEnumeratorService dateTimeEnumerator;
         private readonly IProcessService processService;
 
         public CommitArt()
         {
-            configReader = new ConfigReaderService();
+            configurationService = new ConfigurationService();
             excelReader = new ExcelReaderService();
             dateTimeEnumerator = new DateTimeEnumeratorService();
             processService = new ProcessService();
         }
 
-        public async Task ExecuteAsync()
+        public async Task RunAsync()
         {
-            var config = await configReader.GetConfigAsync();
+            var config = await configurationService.ReadConfigAsync();
             if (!config.CommitArt.ShouldRun())
             {
                 return;
