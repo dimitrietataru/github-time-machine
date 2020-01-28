@@ -22,12 +22,16 @@ namespace GitHubTimeMachine.Actions
         public async Task ExecuteAsync()
         {
             var config = await configReader.GetConfigAsync();
+            if (!config.CommitArt.ShouldRun())
+            {
+                return;
+            }
 
-            var sheet = excelReader.OpenSheet(config.ExcelPath, sheetNumber: 0);
+            var sheet = excelReader.OpenSheet(config.CommitArt.ExcelPath, sheetNumber: 0);
             var matrix = excelReader.ParseSheet(sheet);
-            var days = dateTimeEnumerator.GetDays(config.Year, matrix);
+            var days = dateTimeEnumerator.GetDays(config.CommitArt.Year, matrix);
 
-            await processService.ExecuteCommitsAsync(days, config.Year, config.RepositoryPath);
+            await processService.ExecuteCommitsAsync(days, config.CommitArt.Year, config.CommitArt.RepositoryPath);
         }
     }
 }

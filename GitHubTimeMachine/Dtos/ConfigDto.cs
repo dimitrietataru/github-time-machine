@@ -2,8 +2,7 @@
 {
     internal sealed class ConfigDto
     {
-        public int Year { get; set; }
-        public string RepositoryPath { get; set; }
-        public string ExcelPath { get; set; }
+        public CommitArtDto CommitArt { get; set; }
+        public HistoryRandomizerDto HistoryRandomizer { get; set; }
     }
 }

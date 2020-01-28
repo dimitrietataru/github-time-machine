@@ -1,5 +1,14 @@
 {
-  "Year": "2020",
-  "RepositoryPath": "",
-  "ExcelPath": ""
+  "CommitArt": {
+    "Enabled": true,
+    "Year": 2017,
+    "RepositoryPath": "C:\\Users\\Myt\\Desktop\\Repositories\\GithubTimeMachine-CommitArt",
+    "ExcelPath": "C:\\Users\\Myt\\Desktop\\Repositories\\GithubTimeMachine\\Template.xlsx"
+  },
+  "HistoryRandomizer": {
+    "Enabled": false,
+    "Year": 2020,
+    "RepositoryPath": "C:\\Users\\Myt\\Desktop\\Repositories\\GithubTimeMachine-CommitArt",
+    "Exceptions": []
+  }
 }
