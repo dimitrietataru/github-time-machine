@@ -29,10 +29,10 @@ namespace GitHubTimeMachine.Actions
 
             var sheet = excelService.ReadSheet(config.CommitArt.ExcelConfig);
             var matrix = excelService.ParseSheet(sheet);
-            var days = dateTimeEnumerator.GetDays(config.CommitArt.Year, matrix);
+            var commitDates = dateTimeEnumerator.GetDays(config.CommitArt.Year, matrix);
 
             await processService.ExecuteCommitsAsync(
-                days, config.CommitArt.Year, config.CommitArt.RepositoryPath);
+                commitDates, config.CommitArt.Year, config.CommitArt.RepositoryPath);
         }
     }
 }

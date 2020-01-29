@@ -1,4 +1,6 @@
-﻿namespace GitHubTimeMachine.Extensions
+﻿using System;
+
+namespace GitHubTimeMachine.Extensions
 {
     internal static class DoubleExtension
     {
@@ -6,6 +8,13 @@
             this double value, double leftBound = double.MinValue, double rightBound = double.MaxValue)
         {
             return (value >= leftBound) && (value <= rightBound);
+        }
+
+        public static bool FavorsWeekendCommits(this double value)
+        {
+            var rng = new Random().NextDouble();
+
+            return value > rng;
         }
     }
 }

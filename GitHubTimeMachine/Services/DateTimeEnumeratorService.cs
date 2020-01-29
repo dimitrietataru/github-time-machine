@@ -48,9 +48,29 @@ namespace GitHubTimeMachine.Services
             return result.Where(date => year.Equals(date.Year));
         }
 
-        public IEnumerable<DateTime> GetDays(int year, int maxCommits)
+        public IEnumerable<DateTime> GetDays(int year, int maxCommitsPerDay, double weekendWeight, IEnumerable<DateTime> exceptions)
         {
-            throw new NotImplementedException();
+            var totalDays = year.TotalDays();
+
+            return Enumerable
+                .Range(0, year.TotalDays())
+                .Select(offset => new DateTime(year, 1, 1).AddDays(offset))
+                .Where(date => !exceptions.Contains(date))
+                .SelectMany(date =>
+                    {
+                        int commitCount = new Random().Next(0, maxCommitsPerDay + 1);
+                        if (date.IsWeekend())
+                        {
+                            commitCount = weekendWeight.FavorsWeekendCommits()
+                                ? (int)Math.Ceiling(commitCount / 2.0D)
+                                : 0;
+                        }
+
+                        return Enumerable
+                            .Range(0, commitCount)
+                            .Select(_ => date.WithRandomClock());
+                    })
+                .ToList();
         }
     }
 }

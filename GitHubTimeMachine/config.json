@@ -142,8 +142,8 @@
       }
     ],
     "CommitConfig": {
-      "WeekendWeight": 0.1,
-      "MaxCommitsPerDay": 10
+      "WeekendWeight": 0.25,
+      "MaxCommitsPerDay": 5
     }
   }
 }

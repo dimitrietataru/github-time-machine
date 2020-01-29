@@ -12,5 +12,11 @@ namespace GitHubTimeMachine.Extensions
 
             return new DateTime(date.Year, date.Month, date.Day, hour, minute, second);
         }
+
+        public static bool IsWeekend(this DateTime date)
+        {
+            return date.DayOfWeek.Equals(DayOfWeek.Saturday)
+                || date.DayOfWeek.Equals(DayOfWeek.Sunday);
+        }
     }
 }
