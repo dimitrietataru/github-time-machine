@@ -1,4 +1,5 @@
-﻿using GitHubTimeMachine.Interfaces;
+﻿using GitHubTimeMachine.Extensions;
+using GitHubTimeMachine.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,15 +39,7 @@ namespace GitHubTimeMachine.Services
                     result.AddRange(
                         Enumerable
                             .Range(0, commitCount)
-                            .Select(_ =>
-                                {
-                                    int hour = new Random().Next(9, 17);
-                                    int minute = new Random().Next(0, 60);
-                                    int second = new Random().Next(0, 60);
-
-                                    return new DateTime(
-                                        date.Year, date.Month, date.Day, hour, minute, second);
-                                }));
+                            .Select(_ => date.WithRandomClock()));
 
                     date = date.AddDays(1);
                 }
