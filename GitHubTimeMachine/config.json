@@ -1,15 +1,48 @@
 {
   "CommitArt": {
-    "Enabled": true,
-    "Year": 2017,
+    "Enabled": false,
+    "Year": 2020,
     "RepositoryPath": "C:\\Users\\Myt\\Desktop\\Repositories\\GithubTimeMachine-CommitArt",
     "ExcelPath": "C:\\Users\\Myt\\Desktop\\Repositories\\GithubTimeMachine\\Template.xlsx",
     "SheetNumber": 0
   },
   "HistoryRandomizer": {
-    "Enabled": false,
+    "Enabled": true,
     "Year": 2020,
     "RepositoryPath": "C:\\Users\\Myt\\Desktop\\Repositories\\GithubTimeMachine-CommitArt",
-    "Exceptions": []
+    "WeekendWeight": 100,
+    "MaxCommitsPerDay": 10,
+    "Exceptions": [
+      {
+        "Year": 2010,
+        "BankDays": [
+        ],
+        "Vacations": [
+          {
+            "StartDate": "10 Jan 2010",
+            "EndDate": "12 Jan 2010"
+          },
+          {
+            "StartDate": "01 Aug 2010",
+            "EndDate": "15 Aug 2010"
+          }
+        ]
+      },
+      {
+        "Year": 2020,
+        "BankDays": [
+        ],
+        "Vacations": [
+          {
+            "StartDate": "10 Jan 2020",
+            "EndDate": "12 Jan 2020"
+          },
+          {
+            "StartDate": "01 Aug 2020",
+            "EndDate": "15 Aug 2020"
+          }
+        ]
+      }
+    ]
   }
 }
