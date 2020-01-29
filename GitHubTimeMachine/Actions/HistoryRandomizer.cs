@@ -20,6 +20,8 @@ namespace GitHubTimeMachine.Actions
             {
                 return;
             }
+
+            var freeDays = config.HistoryRandomizer.GetFreeDays();
         }
     }
 }

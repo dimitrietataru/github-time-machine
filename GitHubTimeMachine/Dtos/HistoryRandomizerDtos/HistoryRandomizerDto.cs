@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace GitHubTimeMachine.Dtos.HistoryRandomizerDtos
 {
@@ -62,6 +63,13 @@ namespace GitHubTimeMachine.Dtos.HistoryRandomizerDtos
             }
 
             return true;
+        }
+
+        public IEnumerable<DateTime> GetFreeDays()
+        {
+            return Exceptions
+                .FirstOrDefault(exception => exception.Year.Equals(Year))
+                .AggregateFreeDays();
         }
     }
 }

@@ -6,5 +6,7 @@ namespace GitHubTimeMachine.Dtos.HistoryRandomizerDtos
     {
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
+
+        public int DaysCount => (EndDate.DayOfYear - StartDate.DayOfYear) + 1;
     }
 }
