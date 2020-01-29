@@ -1,4 +1,5 @@
-﻿using GitHubTimeMachine.Dtos.ExceptionDtos;
+﻿using GitHubTimeMachine.Dtos.CommitDtos;
+using GitHubTimeMachine.Dtos.ExceptionDtos;
 using GitHubTimeMachine.Extensions;
 using System;
 using System.Collections.Generic;
@@ -12,10 +13,8 @@ namespace GitHubTimeMachine.Dtos
         public int Year { get; set; }
         public string RepositoryPath { get; set; }
 
-        public int WeekendWeight { get; set; }
-        public int MaxCommitsPerDay { get; set; }
-
         public IEnumerable<YearExceptionDto> Exceptions { get; set; } = new List<YearExceptionDto>();
+        public CommitConfigDto CommitConfig { get; set; }
 
         public bool ShouldRun()
         {
@@ -43,16 +42,16 @@ namespace GitHubTimeMachine.Dtos
                 return false;
             }
 
-            if (!WeekendWeight.IsInInterval(leftBound: 0, rightBound: 100))
+            if (!CommitConfig.WeekendWeight.IsInInterval(leftBound: 0.0D, rightBound: 1.0D))
             {
-                Console.WriteLine($"History randomizer | Invalid weekend weight ({ WeekendWeight })");
+                Console.WriteLine($"History randomizer | Invalid weekend weight: { CommitConfig.WeekendWeight }");
 
                 return false;
             }
 
-            if (!MaxCommitsPerDay.IsInInterval(leftBound: 0))
+            if (!CommitConfig.MaxCommitsPerDay.IsInInterval(leftBound: 0))
             {
-                Console.WriteLine($"History randomizer | Invalid weekend weight ({ WeekendWeight })");
+                Console.WriteLine($"History randomizer | Invalid weekend weight: { CommitConfig.WeekendWeight }");
 
                 return false;
             }

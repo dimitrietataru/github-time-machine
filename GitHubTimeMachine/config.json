@@ -10,8 +10,6 @@
     "Enabled": true,
     "Year": 2020,
     "RepositoryPath": "C:\\Users\\Myt\\Desktop\\Repositories\\GithubTimeMachine-CommitArt",
-    "WeekendWeight": 100,
-    "MaxCommitsPerDay": 10,
     "Exceptions": [
       {
         "Year": 2016,
@@ -140,6 +138,10 @@
         "Vacations": [
         ]
       }
-    ]
+    ],
+    "CommitConfig": {
+      "WeekendWeight": 0.1,
+      "MaxCommitsPerDay": 10
+    }
   }
 }
