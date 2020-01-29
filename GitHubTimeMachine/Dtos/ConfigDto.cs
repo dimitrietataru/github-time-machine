@@ -1,4 +1,7 @@
-﻿namespace GitHubTimeMachine.Dtos
+﻿using GitHubTimeMachine.Dtos.CommitArtDtos;
+using GitHubTimeMachine.Dtos.HistoryRandomizerDtos;
+
+namespace GitHubTimeMachine.Dtos
 {
     internal sealed class ConfigDto
     {

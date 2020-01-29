@@ -1,7 +1,8 @@
-﻿using System;
+﻿using GitHubTimeMachine.Extensions;
+using System;
 using System.IO;
 
-namespace GitHubTimeMachine.Dtos
+namespace GitHubTimeMachine.Dtos.CommitArtDtos
 {
     internal sealed class CommitArtDto
     {
@@ -9,8 +10,7 @@ namespace GitHubTimeMachine.Dtos
         public int Year { get; set; }
         public string RepositoryPath { get; set; }
 
-        public string ExcelPath { get; set; }
-        public int SheetNumber { get; set; } = 0;
+        public ExcelConfigDto ExcelConfig { get; set; }
 
         public bool ShouldRun()
         {
@@ -45,9 +45,16 @@ namespace GitHubTimeMachine.Dtos
                 return false;
             }
 
-            if (!File.Exists(ExcelPath))
+            if (!File.Exists(ExcelConfig.FilePath))
             {
-                Console.WriteLine($"Commit art | Invalid excel path");
+                Console.WriteLine($"Commit art | Invalid excel file path");
+
+                return false;
+            }
+
+            if (!ExcelConfig.SheetNumber.IsInInterval(leftBound: 0))
+            {
+                Console.WriteLine($"Commit art | Invalid sheet number: { ExcelConfig.SheetNumber }");
 
                 return false;
             }

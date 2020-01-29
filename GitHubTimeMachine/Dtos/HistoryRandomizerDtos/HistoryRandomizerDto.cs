@@ -1,11 +1,9 @@
-﻿using GitHubTimeMachine.Dtos.CommitDtos;
-using GitHubTimeMachine.Dtos.ExceptionDtos;
-using GitHubTimeMachine.Extensions;
+﻿using GitHubTimeMachine.Extensions;
 using System;
 using System.Collections.Generic;
 using System.IO;
 
-namespace GitHubTimeMachine.Dtos
+namespace GitHubTimeMachine.Dtos.HistoryRandomizerDtos
 {
     internal sealed class HistoryRandomizerDto
     {

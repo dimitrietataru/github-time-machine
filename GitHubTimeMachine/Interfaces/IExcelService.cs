@@ -1,10 +1,11 @@
-﻿using System.Data;
+﻿using GitHubTimeMachine.Dtos.CommitArtDtos;
+using System.Data;
 
 namespace GitHubTimeMachine.Interfaces
 {
     internal interface IExcelService
     {
-        DataTable ReadSheet(string excelFilePath, int sheetNumber = 0);
+        DataTable ReadSheet(ExcelConfigDto config);
         int[][] ParseSheet(DataTable dataTable);
     }
 }

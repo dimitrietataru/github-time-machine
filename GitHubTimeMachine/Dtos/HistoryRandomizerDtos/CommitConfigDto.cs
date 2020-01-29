@@ -1,4 +1,4 @@
-﻿namespace GitHubTimeMachine.Dtos.CommitDtos
+﻿namespace GitHubTimeMachine.Dtos.HistoryRandomizerDtos
 {
     internal sealed class CommitConfigDto
     {

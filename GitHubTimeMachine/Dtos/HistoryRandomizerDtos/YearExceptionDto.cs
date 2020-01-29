@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace GitHubTimeMachine.Dtos.ExceptionDtos
+namespace GitHubTimeMachine.Dtos.HistoryRandomizerDtos
 {
     internal sealed class YearExceptionDto
     {

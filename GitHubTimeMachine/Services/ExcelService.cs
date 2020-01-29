@@ -1,4 +1,5 @@
 ﻿using ExcelDataReader;
+using GitHubTimeMachine.Dtos.CommitArtDtos;
 using GitHubTimeMachine.Interfaces;
 using System;
 using System.Data;
@@ -13,9 +14,9 @@ namespace GitHubTimeMachine.Services
         private const int DAYS_IN_WEEK = 7;
         private const int HEADER_COUNT = 1;
 
-        public DataTable ReadSheet(string excelFilePath, int sheetNumber = 0)
+        public DataTable ReadSheet(ExcelConfigDto config)
         {
-            using var stream = File.Open(excelFilePath, FileMode.Open, FileAccess.Read);
+            using var stream = File.Open(config.FilePath, FileMode.Open, FileAccess.Read);
             using var reader = ExcelReaderFactory.CreateOpenXmlReader(
                 fileStream: stream,
                 configuration: new ExcelReaderConfiguration()
@@ -29,7 +30,7 @@ namespace GitHubTimeMachine.Services
                     ConfigureDataTable = _ => new ExcelDataTableConfiguration { UseHeaderRow = true }
                 });
 
-            return dataSet.Tables[sheetNumber];
+            return dataSet.Tables[config.SheetNumber];
         }
 
         public int[][] ParseSheet(DataTable dataTable)

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GitHubTimeMachine.Dtos.ExceptionDtos
+namespace GitHubTimeMachine.Dtos.HistoryRandomizerDtos
 {
     internal sealed class DateRangeDto
     {
