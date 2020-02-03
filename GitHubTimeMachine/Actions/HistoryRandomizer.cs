@@ -33,7 +33,7 @@ namespace GitHubTimeMachine.Actions
                 exceptions: freeDays);
 
             await processService.ExecuteCommitsAsync(
-                commitDates, config.CommitArt.Year, config.CommitArt.RepositoryPath);
+                commitDates, config.HistoryRandomizer.Year, config.HistoryRandomizer.RepositoryPath);
         }
     }
 }
